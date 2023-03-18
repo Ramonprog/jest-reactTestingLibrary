@@ -50,6 +50,21 @@ describe("<CheckNumber />", () => {
       expect(section).toHaveTextContent("Ímpar");
     });
   });
+
+  describe("when the user types a not number value", () => {
+    test("renders the error message on the screen", () => {
+      render(<CheckNumber />);
+
+      const input = getInput();
+
+      userEvent.clear(input);
+      userEvent.type(input, "batata");
+
+      const section = screen.getByRole("alert");
+
+      expect(section).toHaveTextContent("Por favor, digite um número.");
+    });
+  });
 });
 
 //aula pausada em 50 min
